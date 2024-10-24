@@ -1,7 +1,7 @@
 import streamlit as st
 
-# Title
-st.title("Are you eligible for screening?")
+# Title with improved size and styling
+st.markdown("<h1 style='text-align: center; color: black;'>Are you eligible for screening?</h1>", unsafe_allow_html=True)
 
 # Custom CSS for styling to match the uploaded image
 st.markdown(
@@ -9,6 +9,7 @@ st.markdown(
     <style>
     body {
         font-family: "Arial", sans-serif;
+        background-color: white;  /* White background */
     }
     .stRadio>div>div {
         padding: 10px;
@@ -22,6 +23,7 @@ st.markdown(
         color: white;
         font-size: 18px;
         padding: 10px;
+        width: 100%;
         border-radius: 10px;
         border: none;
         cursor: pointer;
@@ -33,18 +35,28 @@ st.markdown(
         color: #4B0082;
         font-weight: bold;
     }
+    .icon-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .gender-icon {
+        width: 50px; /* Set width for icons */
+        margin: 0 20px; /* Adjust margin for better spacing */
+    }
     </style>
     """,
     unsafe_allow_html=True
 )
 
-# Display icons for Woman and Man using raw GitHub URLs
-col1, col2 = st.columns([1, 1])
+# Display icons for Woman and Man using raw GitHub URLs, improved layout
+st.markdown("<div class='icon-container'><img class='gender-icon' src='https://raw.githubusercontent.com/auwalmusa/screening-app/main/woman.png' /><img class='gender-icon' src='https://raw.githubusercontent.com/auwalmusa/screening-app/main/man.png' /></div>", unsafe_allow_html=True)
+
+# Gender selection below the icons
+col1, col2 = st.columns(2)
 with col1:
-    st.image("https://raw.githubusercontent.com/auwalmusa/screening-app/main/woman.png", width=50)
     gender = st.radio("", ["Woman"], index=0)
 with col2:
-    st.image("https://raw.githubusercontent.com/auwalmusa/screening-app/main/man.png", width=50)
     gender = st.radio("", ["Man"])
 
 # Information for trans and non-binary individuals
@@ -66,7 +78,7 @@ def check_eligibility(gender, age):
     else:
         return "You are not eligible."
 
-# Submit button
+# Submit button, centered and styled
 if st.button("Am I eligible?"):
     eligibility_message = check_eligibility(gender, age)
     st.write(eligibility_message)
