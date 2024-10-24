@@ -1,11 +1,11 @@
 import streamlit as st
 
-# Custom CSS to style the app
+# Custom CSS to style the app with improved colors
 st.markdown(
     """
     <style>
     body {
-        background-color: #FFFFFF;  /* White background */
+        background-color: #1c1e22;  /* Dark background for the app */
     }
     h1, h2, h3, .stText {
         color: #DC267F;  /* Dark pink for headers */
@@ -20,19 +20,19 @@ st.markdown(
         cursor: pointer;
     }
     .stButton>button:hover {
-        background-color: #c2156d; /* Darker pink when hovered */
+        background-color: #c2156d; /* Slightly darker pink when hovered */
     }
     .stRadio>div, .stNumberInput>div {
-        background-color: #F1E3E4;  /* Light pink background for inputs */
+        background-color: #2c2f33;  /* Darker grey background for inputs */
         padding: 10px;
         border-radius: 10px;
     }
     .stRadio>div, .stSelectbox>div {
-        color: #404040; /* Dark text for radio and select box */
+        color: #FFFFFF; /* White text for inputs */
     }
     .stNumberInput>input {
-        background-color: #E1F5F7;  /* Light blue input background */
-        color: #404040;
+        background-color: #40444b;  /* Dark grey input background */
+        color: #FFFFFF;
     }
     </style>
     """,
@@ -44,9 +44,6 @@ st.title("Eligibility for Screening")
 
 # Gender selection
 gender = st.radio("Select your gender:", ["Woman", "Man"])
-
-# Information for other identities
-st.markdown("[Information for trans and non-binary individuals](https://example.com)")  # Replace with actual link
 
 # Age input
 age = st.number_input("Enter your age:", min_value=0, max_value=100, step=1)
