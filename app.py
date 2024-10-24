@@ -3,13 +3,17 @@ import streamlit as st
 # Title with improved size and styling
 st.markdown("<h1 style='text-align: center; color: black;'>Are you eligible for screening?</h1>", unsafe_allow_html=True)
 
-# Custom CSS for styling to match the uploaded image
+# Custom CSS for styling to force the white background
 st.markdown(
     """
     <style>
     body {
         font-family: "Arial", sans-serif;
-        background-color: white;  /* White background */
+        background-color: white !important;  /* Force white background */
+    }
+    .main {
+        background-color: white !important;  /* Set Streamlit main area background to white */
+        color: black;
     }
     .stRadio>div>div {
         padding: 10px;
@@ -17,13 +21,13 @@ st.markdown(
     .stRadio label {
         font-size: 16px;
         font-weight: normal;
+        color: black; /* Set text to black */
     }
     .stButton>button {
         background-color: #DC267F;
         color: white;
         font-size: 18px;
         padding: 10px;
-        width: 100%;
         border-radius: 10px;
         border: none;
         cursor: pointer;
