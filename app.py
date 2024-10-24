@@ -53,9 +53,9 @@ st.markdown("[Information for trans and non-binary individuals](https://example.
 # Age input
 age = st.number_input("Age:", min_value=0, max_value=100, step=1)
 
-# Region selection with custom icons (if available)
+# Region selection with corrected regions
 region = st.radio("Where do you live?", 
-                  ["England", "Wales", "N. Ireland", "Scotland"])
+                  ["North East", "London", "South East", "Midlands", "North West", "East", "South West"])
 
 # Function to check eligibility
 def check_eligibility(gender, age):
