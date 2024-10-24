@@ -6,9 +6,6 @@ st.title("Eligibility for Screening")
 # Gender selection
 gender = st.radio("Select your gender:", ["Woman", "Man"])
 
-# Information for other identities
-st.markdown("[Information for trans and non-binary individuals](https://example.com)")  # Replace with actual link
-
 # Age input
 age = st.number_input("Enter your age:", min_value=0, max_value=100, step=1)
 
@@ -18,7 +15,7 @@ region = st.radio("Where do you live?",
 
 # Function to check eligibility
 def check_eligibility(gender, age):
-    if gender == "Man" and age < 40:
+    if gender == "Man" and age >= 40:
         return "You are eligible."
     elif gender == "Woman" and age >= 30:
         return "You are eligible."
