@@ -1,56 +1,58 @@
 import streamlit as st
 
-# Custom CSS to style the app with improved colors
+# Title
+st.title("Are you eligible for screening?")
+
+# Custom CSS for styling to match the uploaded image
 st.markdown(
     """
     <style>
     body {
-        background-color: #1c1e22;  /* Dark background for the app */
+        font-family: "Arial", sans-serif;
     }
-    h1, h2, h3, .stText {
-        color: #DC267F;  /* Dark pink for headers */
+    .stRadio>div>div {
+        padding: 10px;
+    }
+    .stRadio label {
+        font-size: 16px;
+        font-weight: normal;
     }
     .stButton>button {
-        background-color: #DC267F;  /* Pink button */
-        color: #FFFFFF;  /* White text for the button */
+        background-color: #DC267F;
+        color: white;
+        font-size: 18px;
+        padding: 10px;
         border-radius: 10px;
         border: none;
-        padding: 10px;
-        font-size: 16px;
         cursor: pointer;
     }
     .stButton>button:hover {
-        background-color: #c2156d; /* Slightly darker pink when hovered */
+        background-color: #c2156d;
     }
-    .stRadio>div, .stNumberInput>div {
-        background-color: #2c2f33;  /* Darker grey background for inputs */
-        padding: 10px;
-        border-radius: 10px;
-    }
-    .stRadio>div, .stSelectbox>div {
-        color: #FFFFFF; /* White text for inputs */
-    }
-    .stNumberInput>input {
-        background-color: #40444b;  /* Dark grey input background */
-        color: #FFFFFF;
+    .stMarkdown a {
+        color: #4B0082;
+        font-weight: bold;
     }
     </style>
     """,
     unsafe_allow_html=True
 )
 
-# Title
-st.title("Eligibility for Screening")
-
-# Gender selection
-gender = st.radio("Select your gender:", ["Woman", "Man"])
+# Display icons for Woman and Man
+col1, col2 = st.columns([1, 1])
+with col1:
+    st.image("woman_icon.png", width=50)
+    gender = st.radio("", ["Woman"], index=0)
+with col2:
+    st.image("man_icon.png", width=50)
+    gender = st.radio("", ["Man"])
 
 # Age input
-age = st.number_input("Enter your age:", min_value=0, max_value=100, step=1)
+age = st.number_input("Age:", min_value=0, max_value=100, step=1)
 
-# Region selection
+# Region selection with custom icons (if available)
 region = st.radio("Where do you live?", 
-                  ["North East", "London", "South East", "Midlands", "North West", "East", "South West"])
+                  ["England", "Wales", "N. Ireland", "Scotland"])
 
 # Function to check eligibility
 def check_eligibility(gender, age):
