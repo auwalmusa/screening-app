@@ -3,7 +3,7 @@ import streamlit as st
 # Title with improved size and styling
 st.markdown("<h1 style='text-align: center; color: black;'>Are you eligible for screening?</h1>", unsafe_allow_html=True)
 
-# Custom CSS for styling to match the uploaded image
+# Custom CSS for styling to match the uploaded color theme
 st.markdown(
     """
     <style>
@@ -74,17 +74,26 @@ st.markdown("[Information for trans and non-binary individuals](https://example.
 # Age input
 age = st.number_input("Age:", min_value=0, max_value=100, step=1)
 
-# Region selection with custom icons (assuming you have region icons ready)
+# Region selection with correct regions and placeholder icons
 st.markdown("Where do you live?")
 col1, col2, col3, col4 = st.columns(4)
 with col1:
-    st.markdown("<div class='region-label'><img class='region-icon' src='https://raw.githubusercontent.com/auwalmusa/screening-app/main/region_england.png' /> England</div>", unsafe_allow_html=True)
+    st.markdown("<div class='region-label'><img class='region-icon' src='https://raw.githubusercontent.com/auwalmusa/screening-app/main/region_placeholder.png' /> North East</div>", unsafe_allow_html=True)
 with col2:
-    st.markdown("<div class='region-label'><img class='region-icon' src='https://raw.githubusercontent.com/auwalmusa/screening-app/main/region_wales.png' /> Wales</div>", unsafe_allow_html=True)
+    st.markdown("<div class='region-label'><img class='region-icon' src='https://raw.githubusercontent.com/auwalmusa/screening-app/main/region_placeholder.png' /> London</div>", unsafe_allow_html=True)
 with col3:
-    st.markdown("<div class='region-label'><img class='region-icon' src='https://raw.githubusercontent.com/auwalmusa/screening-app/main/region_n_ireland.png' /> N. Ireland</div>", unsafe_allow_html=True)
+    st.markdown("<div class='region-label'><img class='region-icon' src='https://raw.githubusercontent.com/auwalmusa/screening-app/main/region_placeholder.png' /> South East</div>", unsafe_allow_html=True)
 with col4:
-    st.markdown("<div class='region-label'><img class='region-icon' src='https://raw.githubusercontent.com/auwalmusa/screening-app/main/region_scotland.png' /> Scotland</div>", unsafe_allow_html=True)
+    st.markdown("<div class='region-label'><img class='region-icon' src='https://raw.githubusercontent.com/auwalmusa/screening-app/main/region_placeholder.png' /> Midlands</div>", unsafe_allow_html=True)
+
+# Second row of regions
+col5, col6, col7 = st.columns(3)
+with col5:
+    st.markdown("<div class='region-label'><img class='region-icon' src='https://raw.githubusercontent.com/auwalmusa/screening-app/main/region_placeholder.png' /> North West</div>", unsafe_allow_html=True)
+with col6:
+    st.markdown("<div class='region-label'><img class='region-icon' src='https://raw.githubusercontent.com/auwalmusa/screening-app/main/region_placeholder.png' /> East</div>", unsafe_allow_html=True)
+with col7:
+    st.markdown("<div class='region-label'><img class='region-icon' src='https://raw.githubusercontent.com/auwalmusa/screening-app/main/region_placeholder.png' /> South West</div>", unsafe_allow_html=True)
 
 # Function to check eligibility
 def check_eligibility(gender, age):
