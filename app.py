@@ -1,92 +1,17 @@
 import streamlit as st
 
-# Title with improved size and styling
-st.markdown("<h1 style='text-align: center; color: black;'>Are you eligible for screening?</h1>", unsafe_allow_html=True)
+# Title
+st.title("Eligibility Checker")
 
-# Custom CSS for styling to force white background and readable text
-st.markdown(
-    """
-    <style>
-    body {
-        font-family: "Arial", sans-serif;
-        background-color: white !important;  /* Force white background */
-    }
-    .main {
-        background-color: white !important;  /* Set the main area to white */
-        color: black !important;  /* Set text to black */
-    }
-    h1, h2, h3, label, p {
-        color: black !important;  /* Force all headings and text to be black */
-    }
-    .stRadio>div>div {
-        padding: 10px;
-        color: black !important;  /* Ensure radio button text is black */
-    }
-    .stRadio label {
-        font-size: 16px;
-        font-weight: normal;
-        color: black !important;  /* Ensure radio button labels are black */
-    }
-    .stButton>button {
-        background-color: #DC267F;
-        color: white;
-        font-size: 18px;
-        padding: 10px;
-        border-radius: 10px;
-        border: none;
-        cursor: pointer;
-    }
-    .stButton>button:hover {
-        background-color: #c2156d;
-    }
-    .stMarkdown a {
-        color: #4B0082;
-        font-weight: bold;
-    }
-    .icon-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .gender-icon {
-        width: 50px; /* Set width for icons */
-        margin: 0 20px; /* Adjust margin for better spacing */
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
+# Input for region
+region = st.selectbox("Where do you live?", 
+                      ["North East", "London", "South East", "Midlands", "North West", "East", "South West"])
 
-# Display icons for Woman and Man using raw GitHub URLs, improved layout
-st.markdown("<div class='icon-container'><img class='gender-icon' src='https://raw.githubusercontent.com/auwalmusa/screening-app/main/woman.png' /><img class='gender-icon' src='https://raw.githubusercontent.com/auwalmusa/screening-app/main/man.png' /></div>", unsafe_allow_html=True)
+# Input for gender
+gender = st.selectbox("What is your gender?", ["Man", "Woman"])
 
-# Gender selection below the icons
-col1, col2 = st.columns(2)
-with col1:
-    gender = st.radio("", ["Woman"], index=0)
-with col2:
-    gender = st.radio("", ["Man"])
+# Input for age
+age = st.number_input("Enter your age", min_value=0, max_value=100, step=1)
 
-# Information for trans and non-binary individuals
-st.markdown("[Information for trans and non-binary individuals](https://example.com)")  # Replace with actual link
-
-# Age input
-age = st.number_input("Age:", min_value=0, max_value=100, step=1)
-
-# Region selection with corrected regions
-region = st.radio("Where do you live?", 
-                  ["North East", "London", "South East", "Midlands", "North West", "East", "South West"])
-
-# Function to check eligibility
+# Eligibility check
 def check_eligibility(gender, age):
-    if gender == "Man" and age < 40:
-        return "You are eligible."
-    elif gender == "Woman" and age >= 30:
-        return "You are eligible."
-    else:
-        return "You are not eligible."
-
-# Submit button, centered and styled
-if st.button("Am I eligible?"):
-    eligibility_message = check_eligibility(gender, age)
-    st.write(eligibility_message)
