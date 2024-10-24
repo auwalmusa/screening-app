@@ -3,7 +3,7 @@ import streamlit as st
 # Title with improved size and styling
 st.markdown("<h1 style='text-align: center; color: black;'>Are you eligible for screening?</h1>", unsafe_allow_html=True)
 
-# Custom CSS for styling to force the white background
+# Custom CSS for styling to force white background and readable text
 st.markdown(
     """
     <style>
@@ -12,16 +12,20 @@ st.markdown(
         background-color: white !important;  /* Force white background */
     }
     .main {
-        background-color: white !important;  /* Set Streamlit main area background to white */
-        color: black;
+        background-color: white !important;  /* Set the main area to white */
+        color: black !important;  /* Set text to black */
+    }
+    h1, h2, h3, label, p {
+        color: black !important;  /* Force all headings and text to be black */
     }
     .stRadio>div>div {
         padding: 10px;
+        color: black !important;  /* Ensure radio button text is black */
     }
     .stRadio label {
         font-size: 16px;
         font-weight: normal;
-        color: black; /* Set text to black */
+        color: black !important;  /* Ensure radio button labels are black */
     }
     .stButton>button {
         background-color: #DC267F;
