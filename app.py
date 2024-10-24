@@ -1,7 +1,7 @@
 import streamlit as st
 
 # Title with improved size and styling
-st.markdown("<h1 style='text-align: center; color: #DC267F;'>Are you eligible for screening?</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center; color: black;'>Are you eligible for screening?</h1>", unsafe_allow_html=True)
 
 # Custom CSS for styling to match the uploaded image
 st.markdown(
@@ -9,6 +9,7 @@ st.markdown(
     <style>
     body {
         font-family: "Arial", sans-serif;
+        background-color: white;  /* White background */
     }
     .stRadio>div>div {
         padding: 10px;
@@ -40,8 +41,17 @@ st.markdown(
         align-items: center;
     }
     .gender-icon {
-        width: 70px; /* Set a bigger width for better visibility */
-        margin: 0 30px; /* Adjust margin for better spacing */
+        width: 50px; /* Set width for icons */
+        margin: 0 20px; /* Adjust margin for better spacing */
+    }
+    .region-icon {
+        width: 35px;
+        margin-right: 10px;
+    }
+    .region-label {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
     }
     </style>
     """,
@@ -64,9 +74,17 @@ st.markdown("[Information for trans and non-binary individuals](https://example.
 # Age input
 age = st.number_input("Age:", min_value=0, max_value=100, step=1)
 
-# Region selection with corrected regions
-region = st.radio("Where do you live?", 
-                  ["North East", "London", "South East", "Midlands", "North West", "East", "South West"])
+# Region selection with custom icons (assuming you have region icons ready)
+st.markdown("Where do you live?")
+col1, col2, col3, col4 = st.columns(4)
+with col1:
+    st.markdown("<div class='region-label'><img class='region-icon' src='https://raw.githubusercontent.com/auwalmusa/screening-app/main/region_england.png' /> England</div>", unsafe_allow_html=True)
+with col2:
+    st.markdown("<div class='region-label'><img class='region-icon' src='https://raw.githubusercontent.com/auwalmusa/screening-app/main/region_wales.png' /> Wales</div>", unsafe_allow_html=True)
+with col3:
+    st.markdown("<div class='region-label'><img class='region-icon' src='https://raw.githubusercontent.com/auwalmusa/screening-app/main/region_n_ireland.png' /> N. Ireland</div>", unsafe_allow_html=True)
+with col4:
+    st.markdown("<div class='region-label'><img class='region-icon' src='https://raw.githubusercontent.com/auwalmusa/screening-app/main/region_scotland.png' /> Scotland</div>", unsafe_allow_html=True)
 
 # Function to check eligibility
 def check_eligibility(gender, age):
