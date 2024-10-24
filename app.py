@@ -1,15 +1,14 @@
 import streamlit as st
 
-# Title with improved size and styling
-st.markdown("<h1 style='text-align: center; color: black;'>Are you eligible for screening?</h1>", unsafe_allow_html=True)
+# Title
+st.title("Are you eligible for screening?")
 
-# Custom CSS for styling to match the uploaded color theme
+# Custom CSS for styling to match the uploaded image
 st.markdown(
     """
     <style>
     body {
         font-family: "Arial", sans-serif;
-        background-color: white;  /* White background */
     }
     .stRadio>div>div {
         padding: 10px;
@@ -23,7 +22,6 @@ st.markdown(
         color: white;
         font-size: 18px;
         padding: 10px;
-        width: 100%;
         border-radius: 10px;
         border: none;
         cursor: pointer;
@@ -35,37 +33,18 @@ st.markdown(
         color: #4B0082;
         font-weight: bold;
     }
-    .icon-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .gender-icon {
-        width: 50px; /* Set width for icons */
-        margin: 0 20px; /* Adjust margin for better spacing */
-    }
-    .region-icon {
-        width: 35px;
-        margin-right: 10px;
-    }
-    .region-label {
-        display: flex;
-        align-items: center;
-        margin-bottom: 10px;
-    }
     </style>
     """,
     unsafe_allow_html=True
 )
 
-# Display icons for Woman and Man using raw GitHub URLs, improved layout
-st.markdown("<div class='icon-container'><img class='gender-icon' src='https://raw.githubusercontent.com/auwalmusa/screening-app/main/woman.png' /><img class='gender-icon' src='https://raw.githubusercontent.com/auwalmusa/screening-app/main/man.png' /></div>", unsafe_allow_html=True)
-
-# Gender selection below the icons
-col1, col2 = st.columns(2)
+# Display icons for Woman and Man using raw GitHub URLs
+col1, col2 = st.columns([1, 1])
 with col1:
+    st.image("https://raw.githubusercontent.com/auwalmusa/screening-app/main/woman.png", width=50)
     gender = st.radio("", ["Woman"], index=0)
 with col2:
+    st.image("https://raw.githubusercontent.com/auwalmusa/screening-app/main/man.png", width=50)
     gender = st.radio("", ["Man"])
 
 # Information for trans and non-binary individuals
@@ -74,26 +53,9 @@ st.markdown("[Information for trans and non-binary individuals](https://example.
 # Age input
 age = st.number_input("Age:", min_value=0, max_value=100, step=1)
 
-# Region selection with correct regions and placeholder icons
-st.markdown("Where do you live?")
-col1, col2, col3, col4 = st.columns(4)
-with col1:
-    st.markdown("<div class='region-label'><img class='region-icon' src='https://raw.githubusercontent.com/auwalmusa/screening-app/main/region_placeholder.png' /> North East</div>", unsafe_allow_html=True)
-with col2:
-    st.markdown("<div class='region-label'><img class='region-icon' src='https://raw.githubusercontent.com/auwalmusa/screening-app/main/region_placeholder.png' /> London</div>", unsafe_allow_html=True)
-with col3:
-    st.markdown("<div class='region-label'><img class='region-icon' src='https://raw.githubusercontent.com/auwalmusa/screening-app/main/region_placeholder.png' /> South East</div>", unsafe_allow_html=True)
-with col4:
-    st.markdown("<div class='region-label'><img class='region-icon' src='https://raw.githubusercontent.com/auwalmusa/screening-app/main/region_placeholder.png' /> Midlands</div>", unsafe_allow_html=True)
-
-# Second row of regions
-col5, col6, col7 = st.columns(3)
-with col5:
-    st.markdown("<div class='region-label'><img class='region-icon' src='https://raw.githubusercontent.com/auwalmusa/screening-app/main/region_placeholder.png' /> North West</div>", unsafe_allow_html=True)
-with col6:
-    st.markdown("<div class='region-label'><img class='region-icon' src='https://raw.githubusercontent.com/auwalmusa/screening-app/main/region_placeholder.png' /> East</div>", unsafe_allow_html=True)
-with col7:
-    st.markdown("<div class='region-label'><img class='region-icon' src='https://raw.githubusercontent.com/auwalmusa/screening-app/main/region_placeholder.png' /> South West</div>", unsafe_allow_html=True)
+# Region selection with corrected regions
+region = st.radio("Where do you live?", 
+                  ["North East", "London", "South East", "Midlands", "North West", "East", "South West"])
 
 # Function to check eligibility
 def check_eligibility(gender, age):
@@ -104,7 +66,7 @@ def check_eligibility(gender, age):
     else:
         return "You are not eligible."
 
-# Submit button, centered and styled
+# Submit button
 if st.button("Am I eligible?"):
     eligibility_message = check_eligibility(gender, age)
     st.write(eligibility_message)
